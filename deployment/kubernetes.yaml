@@ -21,7 +21,7 @@ spec:
             - containerPort: 8080
           env:
             - name: GREETER_NAME
-              value: "Kubernetesed John"
+              value: "{{GREETER_NAME}}"
 ---
 apiVersion: v1
 kind: Service
@@ -33,6 +33,6 @@ spec:
   type: LoadBalancer
   ports:
     - port: 8080
-      nodePort: 30000
+      nodePort: {{GREETER_PORT}}
   selector:
     app: sheepit-sample-greeter
