@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sheepit-sample-greeter
+  labels:
+    app: sheepit-sample-greeter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sheepit-sample-greeter
+  template:
+    metadata:
+      labels:
+        app: sheepit-sample-greeter
+    spec:
+      containers:
+        - name: sheepit-sample-greeter
+          image: sheepit/sheepit-sample-greeter:0.0.1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: GREETER_NAME
+              value: "Kubernetesed John"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sheepit-sample-greeter
+  labels:
+    app: sheepit-sample-greeter
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      nodePort: 30000
+  selector:
+    app: sheepit-sample-greeter
