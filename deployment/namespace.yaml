@@ -1,0 +1,4 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{GREETER_K8S_NAMESPACE}}
