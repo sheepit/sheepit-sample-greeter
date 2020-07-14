@@ -16,12 +16,14 @@ spec:
     spec:
       containers:
         - name: sheepit-sample-greeter
-          image: sheepit/sheepit-sample-greeter:0.0.1
+          image: repo.treescale.com/ryszalke/sheepit-sample-greeter:0.0.2
           ports:
             - containerPort: 8080
           env:
             - name: GREETER_NAME
               value: "{{GREETER_NAME}}"
+      imagePullSecrets:
+        - name: regcred
 ---
 apiVersion: v1
 kind: Service
